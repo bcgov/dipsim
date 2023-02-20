@@ -1,18 +1,31 @@
 Package: dipsim
-Title: What the Package Does (One Line, Title Case)
+Title: Functions to simulate datasets
 Version: 0.0.0.9000
-Authors@R: c(
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre")),
-    person("Province of British Columbia", role = "cph")
-  )
-Description: What the package does (one paragraph).
-License: Apache License (== 2.0) | file LICENSE
+Authors@R: 
+      c(person(given = "Bonnie",
+           family = "Robert",
+           role = c("aut", "cre"),
+           email = "bonnie.robert@gov.bc.ca"),
+        person(given = "Province of British Columbia",
+           role = "cph")
+       )
+Description: This will be filled out.  This sections must contain one or more complete sentences.
+License: License: Apache License (== 2.0) | file LICENSE
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-Suggests: 
+RoxygenNote: 7.1.2
+Imports:
+    dplyr,
+    arrow,
+    stringr,
+    glue,
+    readr,
+    gridExtra,
+    stats, 
+    ggplot2
+Suggests:
+    rmarkdown,
     knitr,
-    rmarkdown
+    testthat
 VignetteBuilder: knitr
-URL: https://github.com/bcgov/dipsim
-BugReports: https://github.com/bcgov/dipsim/issues

@@ -1,5 +1,8 @@
-^dipsim\.Rproj$
+^.*\.Rproj$
 ^\.Rproj\.user$
-^README\.Rmd$
-^CONTRIBUTING\.md$
+
 ^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+^LICENSE.md$
+^COMPLIANCE.yaml$
+^README\.Rmd$
