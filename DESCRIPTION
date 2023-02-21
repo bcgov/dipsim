@@ -1,5 +1,5 @@
 Package: dipsim
-Title: Functions to simulate datasets
+Title: Functions to simulate parquet datasets
 Version: 0.0.0.9000
 Authors@R: 
       c(person(given = "Bonnie",
