@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_dataset.R
 \name{plot_distribution}
 \alias{plot_distribution}
-\title{Title}
+\title{Dynamically plot a dataset}
 \usage{
 plot_distribution(x, ttl = NULL, ...)
 }
@@ -17,7 +17,7 @@ plot_distribution(x, ttl = NULL, ...)
 a ggplot grob with plot
 }
 \description{
-Title
+Dynamically plot a dataset
 }
 \examples{
 \dontrun{
