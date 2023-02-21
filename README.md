@@ -4,6 +4,8 @@
 # dipsim
 
 <!-- badges: start -->
+
+[![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
 <!-- badges: end -->
 
 The goal of dipsim is to …
