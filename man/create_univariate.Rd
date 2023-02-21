@@ -22,11 +22,11 @@ Details of create_univariate
 }
 \section{Functions}{
 \itemize{
-\item \code{create_continuous}: A Title for create_continuous
+\item \code{create_continuous()}: A Title for create_continuous
 
-\item \code{create_discrete}: A Title for create_discrete
+\item \code{create_discrete()}: A Title for create_discrete
+
 }}
-
 \examples{
 \dontrun{
 create_univariate(rnorm(10))
