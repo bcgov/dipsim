@@ -2,7 +2,7 @@
 % Please edit documentation in R/vis_sim.R
 \name{vis_sim}
 \alias{vis_sim}
-\title{Title}
+\title{plot simulated data against original data}
 \usage{
 vis_sim(data, test_data, cols)
 }
@@ -14,7 +14,7 @@ vis_sim(data, test_data, cols)
 \item{cols}{columns to plot, must be in both data and test_data}
 }
 \description{
-Title
+plot simulated data against original data
 }
 \examples{
 \dontrun{
