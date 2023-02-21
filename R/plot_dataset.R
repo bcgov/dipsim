@@ -27,13 +27,16 @@
 #' @importFrom ggplot2 aes labs element_text theme after_stat
 plot_distribution <- function(x, ttl = NULL, ...){
   
-  p <-  as.data.frame(x) %>%
-        ggplot2::ggplot(aes(x = x)) +
-        geom_hist_or_bar(class(x)) +
-        labs(y="frequency", x = NULL, title = ttl) +
-        scale_x_adapt(x, ...) +
-        theme(axis.text.x = element_text(angle = 90, size = 6))
+  # dynamically create a frequency histogram or bar plot depending on the class of x
+  # adapt x-axis scale based on the data using scale_x_adapt() function, 
+  p <- as.data.frame(x) %>%   
+    ggplot2::ggplot(aes(x = x)) +   
+    geom_hist_or_bar(class(x)) +    
+    labs(y="frequency", x = NULL, title = ttl) +   
+    scale_x_adapt(x, ...) +   
+    theme(axis.text.x = element_text(angle = 90, size = 6))   
   
+  # return the grob object
   ggplot2::ggplotGrob(p)
   
 }
