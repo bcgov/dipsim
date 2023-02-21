@@ -33,7 +33,7 @@ devtools::install_github("bcgov/dipsim")
 
 This is a basic example of using `dipsim` to simulate a data set of 50 rows, based on data transformed into parquet format.  The data set `penguins` is found in the CRAN package, `palmerpenguins`.  
 
-```{r example}
+```{r example, eval = FALSE}
 library(dipsim)
 dataset_size = 1000 
 wd <- "/Users/brobert"
@@ -41,7 +41,7 @@ wd <- "/Users/brobert"
 
 
 
-```{r load-routine}
+```{r load-routine, eval = FALSE}
 ##-------------------------- load routine -------------------------------
 parquet_fp <- search_parquet_data()
 
@@ -53,7 +53,7 @@ generate_empirical(samp_size = 50, folder_location = wd, name = basename(parquet
 ```
 
 
-``` {r generate-data}
+``` {r generate-data, eval = FALSE}
 ##-------------------------- generate test data -------------------------
 ##------ generate test data step
 generate_testdata(folder_location = wd, name = basename(parquet_fp), dataset_size = dataset_size)
@@ -62,7 +62,7 @@ simulated_data <- read_testdata(folder_location = wd, name = basename(parquet_fp
 ```
 
 
-```{r dignostics}
+```{r dignostics, eval = FALSE}
 ##--------------------------- diagnostics --------------------------------
 ##----- diagnostics step + helper function
 original_data <- readr::read_csv(glue("{wd}/{basename(parquet_fp)}/
