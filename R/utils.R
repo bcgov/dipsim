@@ -25,21 +25,28 @@
 #' 
 search_parquet_data <- function(sae=TRUE){
  
-  if(sae == TRUE){
+  # check if sae flag is set to TRUE
+  if (sae == TRUE) {
     
+    # create a temp file with .vbs extension to hold VB code.
     tf <- tempfile(fileext = ".vbs")
+    
+    # write VB code to temp file to prompt user to select a folder with their Parquet data.
     cat('Set folder = CreateObject("Shell.Application") _
       .BrowseForFolder (0, "Please choose a folder with your parquet data. 
       The folder may contain multiple partitions, or a single .parquet file.", _
       &H0200, "R:\\working\\parquet_data\\core-snapshot")
       Wscript.Echo folder.Self.Path', file = tf)
-      
-      fp <- utils::tail(shell(paste('Cscript', tf), intern = T), 1)
+    
+    # execute the .vbs script and capture the path of the selected folder.
+    fp <- utils::tail(shell(paste('Cscript', tf), intern = T), 1)
+    
   } else {
+    
+    # if sae flag is set to FALSE, capture file path using file.choose()
     fp = file.choose()
   }
   
-  return(fp)
 }
 
 
@@ -69,6 +76,14 @@ search_parquet_data <- function(sae=TRUE){
 #' @export
 #' 
 create_folder_structure <- function(name, folder_location = './data'){
+  
+  # set up folder structure, checking if the folders exist.
+  # the desired folder structure looks like:
+  # --  folder_location
+  #   --  name
+  #     --  distributions  
+  #       --  empirical
+  #       --  theoretical
   
   if (!dir.exists(glue::glue("{folder_location}"))) {
     dir.create(glue::glue("{folder_location}"))
@@ -121,20 +136,22 @@ generate_theoretical <- function(support, resize = 100000, folder_location = './
 #issue: arrow now supports slice_sample()
 # check user has passed a valid dataset
 
+  # Open an Arrow dataset and convert it to a tibble
   ds <- arrow::open_dataset(support) %>% 
     dplyr::collect() 
   
+  # Sample a subset of the dataset. The sample size is the smaller of either the value of "resize" 
+  # or the number of rows in the dataset.
   ds <- ds %>%
     dplyr::slice(sample(x = nrow(ds), size =  min(nrow(ds), resize), replace = FALSE))
   
 #issue: stop if no folder  
+  # Save the sampled dataset as a CSV file
   file = glue::glue("{folder_location}/{basename(support)}/distributions/theoretical/theoretical.csv")
   readr::write_csv(ds, file)
   
   return(ds)
 }
-
-
 
 
 #' Apply common data cleaning methods
@@ -162,6 +179,8 @@ generate_theoretical <- function(support, resize = 100000, folder_location = './
 #' @export 
 #' 
 clean_data_col <- function(.x){
+  
+  # If .x is a character vector, replace all occurrences of "-" with ""
   if(is.character(.x)) 
     x <- stringr::str_replace_all(.x, pattern = "-", replacement = "")
   return(x)
@@ -197,16 +216,25 @@ clean_data_col <- function(.x){
 #' @export 
 #'
 compare_data <- function(data, test_data) {
-  #issue - check we've captured all the cols, output some message if there are issues
+#issue - check we've captured all the cols, output some message if there are issues
+  # Find column names in data that are not in test_data
   setdiff(names(data), names(test_data))
+  
+  # Find column names in test_data that are not in data
   setdiff(names(test_data), names(data))
   
+  # Find the common column names between data and test_data and sort them
   cols <- sort(intersect(names(data), names(test_data)))
   
-  #issue - check coltypes are the same - handle if there are issues
+#issue - check coltypes are the same - handle if there are issues
+  # Get the classes of each column in the common set of columns between data and test_data
   classes <- sapply(data[,cols], class)
+  
+  # Get the classes of each column in the common set of columns between test_data and data
   test_classes <- sapply(test_data[,cols], class)
-  which(classes!=test_classes)
+  
+  # Find the index of the columns where the classes in data and test_data are different
+  which(classes != test_classes)
   
   #return valid cols to use
   return(cols)
