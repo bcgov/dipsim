@@ -1,8 +1,11 @@
 #' Select parquet data file or partition
 #' 
 #' @description
-#' Opens a file explorer window and search the file system for data.  Root of 
-#' search path is R:/working/parquet_data/core-snapshot.
+#' Opens a file explorer window and searches the file system for data.  Root of 
+#' search path is set to the core-snapshot folder in the SAE.  To override this behavior, 
+#' set `sae=FALSE`.
+#'
+#'@param sae a flag to indicate if working in the SAE
 #'
 #' @return 
 #' A character string.  A folder location of a
@@ -12,20 +15,29 @@
 #' \dontrun{
 #' ## returns a filepath
 #' fp <- search_parquet_data()
+#' 
+#' ## open a file explorer window
+#' fp <- search_parquet_data(sae=FALSE)
 #' }
 #' 
 #' @importFrom dplyr %>%
 #' @export
 #' 
-search_parquet_data <- function(){
-  tf <- tempfile(fileext = ".vbs")
-  
-  cat('Set folder = CreateObject("Shell.Application") _
-      .BrowseForFolder (0, "Please choose a folder with your parquet data. The folder may contain multiple partitions, or a single .parquet file.", _
+search_parquet_data <- function(sae=TRUE){
+ 
+  if(sae=TRUE){
+    
+    tf <- tempfile(fileext = ".vbs")
+    cat('Set folder = CreateObject("Shell.Application") _
+      .BrowseForFolder (0, "Please choose a folder with your parquet data. 
+      The folder may contain multiple partitions, or a single .parquet file.", _
       &H0200, "R:\\working\\parquet_data\\core-snapshot")
       Wscript.Echo folder.Self.Path', file = tf)
-  
-  fp <- utils::tail(shell(paste('Cscript', tf), intern = T), 1)
+      
+      fp <- utils::tail(shell(paste('Cscript', tf), intern = T), 1)
+  } else {
+    fp = file.choose()
+  }
   
   return(fp)
 }

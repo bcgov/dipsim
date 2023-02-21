@@ -11,8 +11,9 @@ A character string.  A folder location of a
 parquet data file or partition.
 }
 \description{
-Opens a file explorer window and search the file system for data.  Root of
-search path is R:/working/parquet_data/core-snapshot.
+Opens a file explorer window and searches the file system for data.  Root of
+search path is set to the working folder in the SAE.  To override this behavior,
+set \code{sae=FALSE}.
 }
 \examples{
 \dontrun{
