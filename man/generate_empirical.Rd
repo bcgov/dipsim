@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_empirical_df.R
 \name{generate_empirical}
 \alias{generate_empirical}
-\title{write_empirical_df}
+\title{A title for write_empirical_df}
 \usage{
 generate_empirical(samp_size = 50, folder_location, name)
 }
@@ -14,14 +14,11 @@ generate_empirical(samp_size = 50, folder_location, name)
 \item{name}{name of dataset to simulate}
 }
 \description{
-A title for write_empirical_df
-}
-\details{
 Details of write_empirical_df
 }
 \examples{
 \dontrun{
-wd <- 'R:/working/users/brobert/mydata'
+wd <- '.'
 fp <- search_parquet_data()
 generate_testdata(samp_size = 50, folder_location = wd, name = fp)
 }

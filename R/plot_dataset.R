@@ -1,4 +1,16 @@
-#' Title
+# Copyright 2023 Province of British Columbia
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+
+#' Dynamically plot a dataset
 #'
 #' @param x column to plot
 #' @param ttl plot title
@@ -15,13 +27,16 @@
 #' @importFrom ggplot2 aes labs element_text theme after_stat
 plot_distribution <- function(x, ttl = NULL, ...){
   
-  p <-  as.data.frame(x) %>%
-        ggplot2::ggplot(aes(x = x)) +
-        geom_hist_or_bar(class(x)) +
-        labs(y="frequency", x = NULL, title = ttl) +
-        scale_x_adapt(x, ...) +
-        theme(axis.text.x = element_text(angle = 90, size = 6))
+  # dynamically create a frequency histogram or bar plot depending on the class of x
+  # adapt x-axis scale based on the data using scale_x_adapt() function, 
+  p <- as.data.frame(x) %>%   
+    ggplot2::ggplot(aes(x = x)) +   
+    geom_hist_or_bar(class(x)) +    
+    labs(y="frequency", x = NULL, title = ttl) +   
+    scale_x_adapt(x, ...) +   
+    theme(axis.text.x = element_text(angle = 90, size = 6))   
   
+  # return the grob object
   ggplot2::ggplotGrob(p)
   
 }
@@ -35,7 +50,7 @@ scale_limits.default <- function(x) NULL
 
 scale_limits.numeric <- function(x) range(x, na.rm = TRUE)
 
-#' @export
+
 scale_limits.character <- function(x) NULL
 
 
