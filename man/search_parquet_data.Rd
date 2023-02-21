@@ -4,7 +4,10 @@
 \alias{search_parquet_data}
 \title{Select parquet data file or partition}
 \usage{
-search_parquet_data()
+search_parquet_data(sae = TRUE)
+}
+\arguments{
+\item{sae}{a flag to indicate if working in the SAE}
 }
 \value{
 A character string.  A folder location of a
@@ -12,13 +15,16 @@ parquet data file or partition.
 }
 \description{
 Opens a file explorer window and searches the file system for data.  Root of
-search path is set to the working folder in the SAE.  To override this behavior,
+search path is set to the core-snapshot folder in the SAE.  To override this behavior,
 set \code{sae=FALSE}.
 }
 \examples{
 \dontrun{
 ## returns a filepath
 fp <- search_parquet_data()
+
+## open a file explorer window
+fp <- search_parquet_data(sae=FALSE)
 }
 
 }

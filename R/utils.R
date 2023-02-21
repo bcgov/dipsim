@@ -25,7 +25,7 @@
 #' 
 search_parquet_data <- function(sae=TRUE){
  
-  if(sae=TRUE){
+  if(sae == TRUE){
     
     tf <- tempfile(fileext = ".vbs")
     cat('Set folder = CreateObject("Shell.Application") _
