@@ -8,7 +8,8 @@
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
 <!-- badges: end -->
 
-The goal of dipsim is to …
+dipsim is a package built to simulate large datasets in a parquet format
+
 
 ## Installation
 
