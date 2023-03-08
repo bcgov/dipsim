@@ -28,7 +28,7 @@ rows, based on data transformed into parquet format. The data set
 
 ``` r
 library(dipsim)
-dataset_size = 1000 
+dataset_size = 50 
 wd <- "/Users/brobert"
 ```
 
