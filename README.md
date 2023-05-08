@@ -67,7 +67,7 @@ vis_sim (original_data, simulated_data, cols)
 
 ### Getting Help or Reporting an Issue
 
-To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/climate-service-use-results/issues/).
+To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/dipsim/issues).
 
 ### How to Contribute
 
