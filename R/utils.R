@@ -35,34 +35,37 @@
 #' @importFrom dplyr %>%
 #' @export
 #' 
+
 search_parquet_data <- function(sae=TRUE){
  
   # check if sae flag is set to TRUE
-  if (sae == TRUE) {
+  if (.Platform$OS.type == "windows"){
+    
+    fldr = "C:\\"
+    if(sae == TRUE){
+      fldr = "R:\\working\\parquet_data\\core-snapshot"
+    }
     
     # create a temp file with .vbs extension to hold VB code.
     tf <- tempfile(fileext = ".vbs")
     
-    # write VB code to temp file to prompt user to select a folder with their Parquet data.
+    #VB code to temp file to prompt user to select a folder with their Parquet data.
     cat('Set folder = CreateObject("Shell.Application") _
-      .BrowseForFolder (0, "Please choose a folder with your parquet data. 
-      The folder may contain multiple partitions, or a single .parquet file.", _
-      &H0200, "R:\\working\\parquet_data\\core-snapshot")
-      Wscript.Echo folder.Self.Path', file = tf)
+        .BrowseForFolder (0, "Please choose a folder with your parquet data. 
+        The folder may contain multiple partitions, or a single .parquet file.", _
+        &H0200,',fldr,'
+        Wscript.Echo folder.Self.Path', file = tf)
     
     # execute the .vbs script and capture the path of the selected folder.
     fp <- utils::tail(shell(paste('Cscript', tf), intern = T), 1)
     
-  } else {
-    
-    # if sae flag is set to FALSE, capture file path using file.choose()
+  } else if (.Platform$OS.type == "unix") {
     fp = file.choose()
+  } else {
+    stop("unrecognized operating system")
   }
   
 }
-
-
-
 
 #' Create folder structure for sample data
 #
