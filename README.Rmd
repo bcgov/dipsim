@@ -38,7 +38,7 @@ This is a basic example of using `dipsim` to simulate a data set of 50 rows, bas
 ```{r example, eval = FALSE}
 library(dipsim)
 dataset_size = 1000 
-wd <- "/Users/brobert"
+wd <- "/Users/brobert/Desktop"
 ```
 
 
