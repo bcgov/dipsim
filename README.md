@@ -37,15 +37,13 @@ smaller versions of the actual data set.
 -   [What is Dipsim?](#what-is-dipsim)
 -   [Table of Contents](#table-of-contents)
 -   [Getting Help](#getting-help)
--   [Contributing](#contributing)
 -   [Getting Started](#getting-started)
     -   [Prerequisites](#prerequisites)
     -   [Installation Documentation](#installation-documentation)
     -   [Example Workflow](#example-workflow)
 -   [Documentation](#dcoumentation)
 -   [Core team](#core-team)
--   [Contributors](#contributors)
--   [Acknowledgements](#acknowledgements)
+-   [Contributing](#contributing)
 -   [License](#license)
 
 ## Getting Help
@@ -53,14 +51,6 @@ smaller versions of the actual data set.
 To report bugs/issues/feature requests, please file an
 [issue](https://github.com/bcgov/dipsim/issues).
 
-## Contributing
-
-If you would like to contribute, please see our
-[CONTRIBUTING](CONTRIBUTING.md) guidelines.
-
-Please note that this project is released with a [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
-to abide by its terms.
 
 ## Getting Started
 
@@ -139,6 +129,15 @@ After installing the package you can view vignettes by typing
 ## Core team
 
 -   [@BonnieJRobert](https://github.com/BonnieJRobert)
+
+## Contributing
+
+If you would like to contribute, please see our
+[CONTRIBUTING](CONTRIBUTING.md) guidelines.
+
+Please note that this project is released with a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
+to abide by its terms.
 
 ## License
 
