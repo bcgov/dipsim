@@ -101,7 +101,7 @@ generate_empirical(samp_size = 50, folder_location = wd,
 generate_testdata(folder_location = wd, 
                   name = tools::file_path_sans_ext(basename(parquet_fp)), dataset_size = dataset_size)
 
-simulated_data <- read_testdata(folder_location = wd, name = basename(parquet_fp))
+simulated_data <- read_testdata(folder_location = wd, name = tools::file_path_sans_ext(basename(parquet_fp)))
 ```
 
 ``` r

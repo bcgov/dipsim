@@ -6,3 +6,5 @@
 ^LICENSE.md$
 ^COMPLIANCE.yaml$
 ^README\.Rmd$
+^doc$
+^Meta$
