@@ -47,18 +47,21 @@ wd <- "/Users/brobert/Desktop"
 ##-------------------------- load routine -------------------------------
 parquet_fp <- search_parquet_data()
 
-create_folder_structure(folder_location = wd, name = basename(parquet_fp))
+create_folder_structure(folder_location = wd, 
+                        name = tools::file_path_sans_ext(basename(parquet_fp)))
 
 data <- generate_theoretical(support = parquet_fp, resize = 100000, folder_location = wd)
 
-generate_empirical(samp_size = 50, folder_location = wd, name = basename(parquet_fp))
+generate_empirical(samp_size = 50, folder_location = wd, 
+                   name = tools::file_path_sans_ext(basename(parquet_fp)))
 ```
 
 
 ``` {r generate-data, eval = FALSE}
 ##-------------------------- generate test data -------------------------
 ##------ generate test data step
-generate_testdata(folder_location = wd, name = basename(parquet_fp), dataset_size = dataset_size)
+generate_testdata(folder_location = wd, 
+                  name = tools::file_path_sans_ext(basename(parquet_fp)), dataset_size = dataset_size)
 
 simulated_data <- read_testdata(folder_location = wd, name = basename(parquet_fp))
 ```
@@ -67,15 +70,20 @@ simulated_data <- read_testdata(folder_location = wd, name = basename(parquet_fp
 ```{r dignostics, eval = FALSE}
 ##--------------------------- diagnostics --------------------------------
 ##----- diagnostics step + helper function
-original_data <- readr::read_csv(glue("{wd}/{basename(parquet_fp)}/
-                                      distributions/theoretical/theoretical.csv"),
-                                 na = character())
+original_data <- glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}/distributions/theoretical/theoretical.csv")
+original_data <- readr::read_csv(original_data, na = character())
 
 cols <- compare_data(original_data, simulated_data)
 
 vis_sim (original_data, simulated_data, cols) 
 ```
 
+
+```{r cleanup, eval = FALSE}
+##----------------------- clean up temp folder
+f=glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}")
+unlink(f, recursive = TRUE)
+```
 
 ### Getting Help or Reporting an Issue
 
