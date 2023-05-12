@@ -27,8 +27,9 @@ simulated_data <- read_testdata(folder_location = wd, name = tools::file_path_sa
 
 ##--------------------------- diagnostics --------------------------------
 ##----- diagnostics step + helper function
-original_data <- file.choose()
+original_data <- glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}/distributions/theoretical/theoretical.csv")
 original_data <- readr::read_csv(original_data, na = character())
+
 cols <- compare_data(original_data, simulated_data)
 
 ##----- diagnostics step + helper function
@@ -36,5 +37,5 @@ cols <- compare_data(original_data, simulated_data)
 vis_sim (original_data, simulated_data, cols) 
 
 ##----------------------- clean up temp folder
-f=basename(file_path)
-removeDirectory(glue::glue("data/{f}"), recursive = TRUE, mustExists = TRUE)
+f=glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}")
+unlink(f, recursive = TRUE)
