@@ -162,7 +162,7 @@ generate_theoretical <- function(support, resize = 100000, folder_location = './
   
 #issue: stop if no folder  
   # Save the sampled dataset as a CSV file
-  file = glue::glue("{folder_location}/{basename(support)}/distributions/theoretical/theoretical.csv")
+  file = glue::glue("{folder_location}/{tools::file_path_sans_ext(basename(support))}/distributions/theoretical/theoretical.csv")
   readr::write_csv(ds, file)
   
   return(ds)
