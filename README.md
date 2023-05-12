@@ -8,7 +8,7 @@
 dipsim
 </h1>
 
-<strong>simulating data for researchers</strong>
+<strong>Simulating Data for BCGov Researchers</strong>
 
 </div>
 
@@ -22,13 +22,21 @@ dipsim
 
 ## What is dipsim?
 
-Dipsim is …
+It is an R package with tools designed for simulating data from data
+sets in `.parquet` format. It was primarily developed to help BCGov
+researchers working in the DIP to create secondary datasets for use
+during testing and development.
+
+Developing code for data science applications can be time consuming and
+testing code on massive data sets can slow down development
+significantly. `dipsim` helps by providing a way to quickly create
+smaller versions of the actual data set.
 
 ## Table of Contents
 
 -   [What is Dipsim?](#what-is-dipsim)
 -   [Table of Contents](#table-of-contents)
--   [Community](#community)
+-   [Getting Help](#getting-help)
 -   [Contributing](#contributing)
 -   [Getting Started](#getting-started)
     -   [Prerequisites](#prerequisites)
@@ -36,10 +44,11 @@ Dipsim is …
     -   [Example Workflow](#example-workflow)
 -   [Documentation](#dcoumentation)
 -   [Core team](#core-team)
+-   [Contributors](#contributors)
 -   [Acknowledgements](#acknowledgements)
 -   [License](#license)
 
-## Community
+## Getting Help
 
 To report bugs/issues/feature requests, please file an
 [issue](https://github.com/bcgov/dipsim/issues).
@@ -57,8 +66,9 @@ to abide by its terms.
 
 ### Prerequisites
 
--   [R](https://www.r-project.org)
+-   [R](https://www.r-project.org) `R --version` \> 4.0
 -   [RStudio](https://posit.co/products/open-source/rstudio-server/)
+    `RStudio --version` \> 2022.07.0(Spotted Wakerobin)
 
 ### Installation Documentation
 
@@ -125,6 +135,10 @@ unlink(f, recursive = TRUE)
 
 After installing the package you can view vignettes by typing
 `browseVignettes("dipsim")` in your R session.
+
+## Core team
+
+-   [@BonnieJRobert](https://github.com/BonnieJRobert)
 
 ## License
 
