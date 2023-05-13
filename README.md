@@ -91,15 +91,10 @@ input_data <- make_input_data(support_fp = parquet_fp, resize = 100000, folder_l
 ```
 
 ``` r
-##-------------------------- generate test data -------------------------
-generate_empirical(samp_size = 50, folder_location = wd, 
-                   name = tools::file_path_sans_ext(basename(parquet_fp)))
-                   
-##------ generate test data step
-generate_testdata(folder_location = wd, 
-                  name = tools::file_path_sans_ext(basename(parquet_fp)), dataset_size = dataset_size)
-
-simulated_data <- read_testdata(folder_location = wd, name = tools::file_path_sans_ext(basename(parquet_fp)))
+##-------------------------- generate simulated data -------------------------
+simulated_data <- make_simulated_data (samp_size = 50, folder_location = wd, 
+                     name = tools::file_path_sans_ext(basename(parquet_fp)),
+                     dataset_size = 100)
 ```
 
 ``` r
