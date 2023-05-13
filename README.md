@@ -86,17 +86,15 @@ wd <- "/Users/brobert/Desktop"
 ##-------------------------- load routine -------------------------------
 parquet_fp <- search_parquet_data()
 
-create_folder_structure(folder_location = wd, 
-                        name = tools::file_path_sans_ext(basename(parquet_fp)))
+input_data <- make_input_data(support_fp = parquet_fp, resize = 100000, folder_location = wd)
 
-data <- generate_theoretical(support = parquet_fp, resize = 100000, folder_location = wd)
-
-generate_empirical(samp_size = 50, folder_location = wd, 
-                   name = tools::file_path_sans_ext(basename(parquet_fp)))
 ```
 
 ``` r
 ##-------------------------- generate test data -------------------------
+generate_empirical(samp_size = 50, folder_location = wd, 
+                   name = tools::file_path_sans_ext(basename(parquet_fp)))
+                   
 ##------ generate test data step
 generate_testdata(folder_location = wd, 
                   name = tools::file_path_sans_ext(basename(parquet_fp)), dataset_size = dataset_size)
