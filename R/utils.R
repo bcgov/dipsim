@@ -121,54 +121,6 @@ create_folder_structure <- function(name, folder_location = './data'){
   }
 }
 
-
-
-
-
-#' Generate a sample theoretical distribution
-#'
-#' @description 
-#' obtains a sample of a parquet dataset for easier memory handling.  
-#' Rows are randomly selected using sample().
-#' 
-#' @param support file path to parquet data
-#' @param resize an integer number of rows to sample, defaults to 100000
-#' @param folder_location a path to a folder to write data.  defaults to `./data`
-#'
-#' @return sample of a parquet dataset
-#'
-#' @examples
-#' \dontrun{
-#' ## Generate a sample of parquet data
-#' wd <- 'R:/working/users/brobert/mydata'
-#' fp <- search_parquet_data()
-#' df <- generate_theoretical(support = fp, resize = 100, folder_location = wd)
-#' }
-#' 
-#' @export 
-#' 
-generate_theoretical <- function(support, resize = 100000, folder_location = './data'){
-#issue: arrow now supports slice_sample()
-# check user has passed a valid dataset
-
-  # Open an Arrow dataset and convert it to a tibble
-  ds <- arrow::open_dataset(support) %>% 
-    dplyr::collect() 
-  
-  # Sample a subset of the dataset. The sample size is the smaller of either the value of "resize" 
-  # or the number of rows in the dataset.
-  ds <- ds %>%
-    dplyr::slice(sample(x = nrow(ds), size =  min(nrow(ds), resize), replace = FALSE))
-  
-#issue: stop if no folder  
-  # Save the sampled dataset as a CSV file
-  file = glue::glue("{folder_location}/{tools::file_path_sans_ext(basename(support))}/distributions/theoretical/theoretical.csv")
-  readr::write_csv(ds, file)
-  
-  return(ds)
-}
-
-
 #' Apply common data cleaning methods
 #'
 #' @description 
