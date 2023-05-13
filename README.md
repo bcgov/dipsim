@@ -103,9 +103,9 @@ simulated_data <- make_simulated_data (samp_size = 50, folder_location = wd,
 original_data <- glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}/distributions/theoretical/theoretical.csv")
 original_data <- readr::read_csv(original_data, na = character())
 
-cols <- compare_data(original_data, simulated_data)
+cols <- compare_data(input_data, simulated_data)
 
-vis_sim (original_data, simulated_data, cols) 
+vis_sim (input_data, simulated_data, cols) 
 ```
 
 ``` r
