@@ -78,12 +78,11 @@ rows, based on data transformed into parquet format. The data set
 
 ``` r
 library(dipsim)
-dataset_size = 1000 
 wd <- "/Users/brobert/Desktop"
 ```
 
 ``` r
-##-------------------------- load routine -------------------------------
+##---------------------------------------- load routine --------------------------------------------------
 parquet_fp <- search_parquet_data()
 
 input_data <- make_input_data(support_fp = parquet_fp, resize = 100000, folder_location = wd)
@@ -91,25 +90,19 @@ input_data <- make_input_data(support_fp = parquet_fp, resize = 100000, folder_l
 ```
 
 ``` r
-##-------------------------- generate simulated data -------------------------
-simulated_data <- make_simulated_data (samp_size = 50, folder_location = wd, 
-                     name = tools::file_path_sans_ext(basename(parquet_fp)),
-                     dataset_size = 100)
+##---------------------------------------- generate simulated data ---------------------------------------
+simulated_data <- make_simulated_data (samp_size = 50, folder_location = wd, dataset_size = 1000
+                                       name = tools::file_path_sans_ext(basename(parquet_fp)))
 ```
 
 ``` r
-##--------------------------- diagnostics --------------------------------
-##----- diagnostics step + helper function
-original_data <- glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}/distributions/theoretical/theoretical.csv")
-original_data <- readr::read_csv(original_data, na = character())
-
+##----------------------------------------- diagnostics --------------------------------------------------
 cols <- compare_data(input_data, simulated_data)
-
 vis_sim (input_data, simulated_data, cols) 
 ```
 
 ``` r
-##----------------------- clean up temp folder
+##------------------------------------- clean up temp folder ---------------------------------------------
 f=glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}")
 unlink(f, recursive = TRUE)
 ```
