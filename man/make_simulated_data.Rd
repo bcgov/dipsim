@@ -4,7 +4,7 @@
 \alias{make_simulated_data}
 \title{Generate a simulated dataset}
 \usage{
-make_simulated_data(samp_size = 50, folder_location, name)
+make_simulated_data(samp_size = 50, folder_location, name, dataset_size = 100)
 }
 \arguments{
 \item{samp_size}{integer, desired row count of base data, defaults to 100}
@@ -14,6 +14,9 @@ make_simulated_data(samp_size = 50, folder_location, name)
 \item{name}{name of dataset to simulate}
 
 \item{dataset_size}{desired size of the dataset to return, defaults to 1000 rows}
+}
+\value{
+a simulated dataset
 }
 \description{
 Generate a simulated dataset
