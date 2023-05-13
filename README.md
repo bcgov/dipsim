@@ -91,15 +91,10 @@ input_data <- make_input_data(support_fp = parquet_fp, resize = 100000, folder_l
 ```
 
 ``` r
-##-------------------------- generate test data -------------------------
-generate_empirical(samp_size = 50, folder_location = wd, 
-                   name = tools::file_path_sans_ext(basename(parquet_fp)))
-                   
-##------ generate test data step
-generate_testdata(folder_location = wd, 
-                  name = tools::file_path_sans_ext(basename(parquet_fp)), dataset_size = dataset_size)
-
-simulated_data <- read_testdata(folder_location = wd, name = tools::file_path_sans_ext(basename(parquet_fp)))
+##-------------------------- generate simulated data -------------------------
+simulated_data <- make_simulated_data (samp_size = 50, folder_location = wd, 
+                     name = tools::file_path_sans_ext(basename(parquet_fp)),
+                     dataset_size = 100)
 ```
 
 ``` r
@@ -108,9 +103,9 @@ simulated_data <- read_testdata(folder_location = wd, name = tools::file_path_sa
 original_data <- glue::glue("{wd}/{tools::file_path_sans_ext(basename(parquet_fp))}/distributions/theoretical/theoretical.csv")
 original_data <- readr::read_csv(original_data, na = character())
 
-cols <- compare_data(original_data, simulated_data)
+cols <- compare_data(input_data, simulated_data)
 
-vis_sim (original_data, simulated_data, cols) 
+vis_sim (input_data, simulated_data, cols) 
 ```
 
 ``` r

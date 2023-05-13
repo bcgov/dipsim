@@ -37,14 +37,14 @@ make_input_data <- function(support_fp, resize = 100000, folder_location = '.'){
   create_folder_structure(folder_location = folder_location, 
                           name = tools::file_path_sans_ext(basename(support_fp)))
   
-  generate_theoretical(support_fp = support_fp, resize = resize, folder_location = folder_location)
+  generate_theoretical(support = support_fp, resize = resize, folder_location = folder_location)
   
 }
 
 
 #' @export 
 #' 
-generate_theoretical <- function(support_fp, resize, folder_location){
+generate_theoretical <- function(support, resize, folder_location){
   #issue: arrow now supports slice_sample()
   # check user has passed a valid dataset
   
